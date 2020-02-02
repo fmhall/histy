@@ -1,0 +1,6 @@
+build/
+dist/
+env/
+histy_mason.egg-info
+g.log
+.idea
