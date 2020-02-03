@@ -3,13 +3,16 @@ from argparse import ArgumentParser
 import fileinput
 from typing import Optional, Dict
 from datetime import datetime, timedelta
+import re
 
+MATCH = '\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d'
+MAX_WIDTH = 100
 
 def process_line(line: str) -> Optional[datetime]:
-    idx = line.find("timestamp")
-    if idx != -1:
-        t_idx = idx + 13
-        timestamp = line[t_idx:t_idx + 26]
+
+    result = re.search(MATCH, line)
+    if result:
+        timestamp = result.group()
         t = datetime.fromisoformat(timestamp)
         return t
     else:
@@ -24,12 +27,12 @@ def generate_histogram(hist: Dict) -> None:
 
     print("Histogram:")
     for k, v in hist.items():
-        hash_count = int(v / maximum * 80.0)
+        hash_count = int(v / maximum * float(MAX_WIDTH))
         print(k.isoformat(), " : ", "#" * hash_count, v)
 
 
 def main():
-    hist = {}
+    hist = dict()
     bucket_start = process_line(next(lines))
     bucket_end = bucket_start + timedelta(seconds=bucket_time_s)
     for line in lines:
