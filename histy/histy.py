@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 import re
 
 MATCH = '\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d'
-MAX_WIDTH = 80
+MAX_WIDTH = 70
 
 
 def process_line(line: str) -> Optional[datetime]:
