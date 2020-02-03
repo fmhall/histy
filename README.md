@@ -19,10 +19,10 @@ Histy is a command line tool for generating histogram plots from timestamped log
 Timestamps must be in ISO format.
 Histy is useful for quick visual analysis of log frequencies from the command line
 
-###Parameters:
+### Parameters:
 `--bucket_time_s` or `-b` : the duration of each histogram bucket in seconds 
 
-###Sample usage:
+### Sample usage:
 ```bash
 docker logs my-app --since "2020-01-06 12:37:30" --until "2020-01-06 12:38:30" | histy -b 10
 ```
