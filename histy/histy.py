@@ -8,8 +8,8 @@ import re
 MATCH = '\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d'
 MAX_WIDTH = 100
 
-def process_line(line: str) -> Optional[datetime]:
 
+def process_line(line: str) -> Optional[datetime]:
     result = re.search(MATCH, line)
     if result:
         timestamp = result.group()

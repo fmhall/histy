@@ -4,8 +4,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="histy", # Replace with your own username
-    version="0.0.5",
+    name="histy",
+    version="0.0.6",
     author="Mason Hall",
     author_email="masonhall@gmail.com",
     description="A command-line tool for generating histograms from timestamped logs",
@@ -21,7 +21,7 @@ setuptools.setup(
     python_requires='>=3.6',
     entry_points={
             'console_scripts': [
-                'histy = histy.hist:main'
+                'histy = histy.histy:main'
             ]
         }
 )
