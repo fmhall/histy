@@ -32,6 +32,12 @@ def generate_histogram(hist: Dict) -> None:
 
 
 def main():
+    parser = ArgumentParser()
+    parser.add_argument('--bucket_time_s', '-b', help='bucket duration in seconds')
+    parser.add_argument('files', metavar='FILE', nargs='*', help='files to read, if empty, stdin is used')
+    args = parser.parse_args()
+    bucket_time_s = int(args.bucket_time_s)
+    lines = fileinput.input(files=args.files if len(args.files) > 0 else ('-',))
     hist = dict()
     bucket_start = process_line(next(lines))
     bucket_end = bucket_start + timedelta(seconds=bucket_time_s)
@@ -47,11 +53,5 @@ def main():
 
 
 if __name__ == '__main__':
-    parser = ArgumentParser()
-    parser.add_argument('--bucket_time_s', '-b', help='bucket duration in seconds')
-    parser.add_argument('files', metavar='FILE', nargs='*', help='files to read, if empty, stdin is used')
-    args = parser.parse_args()
-    bucket_time_s = int(args.bucket_time_s)
-    lines = fileinput.input(files=args.files if len(args.files) > 0 else ('-', ))
     main()
 
