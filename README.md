@@ -26,8 +26,13 @@ Histy is useful for quick visual analysis of log frequencies from the command li
 
 ### Sample usage:
 ```bash
+cat server.log | histy -b 60
+```
+
+```bash
 docker logs my-app --since "2020-01-06 12:37:30" --until "2020-01-06 12:38:30" | histy -b 10
 ```
+
 Output:
 ```
 Histogram:
@@ -44,7 +49,3 @@ Histogram:
 2020-01-15T03:14:41  :  ####### 48
 2020-01-15T03:14:51  :   5
 
-```
-```bash
-cat server.log | histy -b 60
-```
