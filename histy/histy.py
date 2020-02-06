@@ -19,26 +19,27 @@ def process_line(line: str) -> Optional[datetime]:
     return None
 
 
-def generate_histogram(hist: Dict) -> None:
+def generate_histogram(hist: Dict[datetime, int]) -> None:
     maximum = 1
     for value in hist.values():
         if value > maximum:
             maximum = value
 
     print("Histogram:")
+
     for timestamp, count in hist.items():
         hash_count = int(count / maximum * float(MAX_WIDTH))
         print(timestamp.isoformat(), " : ", "#" * hash_count, count)
 
 
-def get_parser():
+def get_parser() -> ArgumentParser:
     parser = ArgumentParser(description="CLI tool for creating histograms from ISO timestamped logs")
-    parser.add_argument('--bucket_time_s', '-b', help='bucket duration in seconds', type=int)
+    parser.add_argument('--bucket_time_s', '-b', help='bucket duration in seconds', type=int, required=True)
     parser.add_argument('files', metavar='FILE', nargs='*', help='files to read, if empty, stdin is used')
     return parser
 
 
-def histy(args):
+def histy(args: Dict) -> Dict[datetime, int]:
     bucket_time_s = args['bucket_time_s']
     lines = fileinput.input(files=args['files'] if len(args['files']) > 0 else ('-',))
     hist = dict()
@@ -55,7 +56,7 @@ def histy(args):
     return hist
 
 
-def command_line_runner():
+def command_line_runner() -> None:
     parser = get_parser()
     args = vars(parser.parse_args())
 
