@@ -19,6 +19,8 @@ Histy is a command line tool for generating histogram plots from timestamped log
 Timestamps must be in ISO format.
 Histy is useful for quick visual analysis of log frequencies from the command line
 
+### Installation (Requires Python 3.6+ and pip)
+`pip install histy`
 ### Parameters:
 `--bucket_time_s` or `-b` : the duration of each histogram bucket in seconds 
 
