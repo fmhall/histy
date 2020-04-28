@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="histy",
-    version="0.0.8",
+    version="1.0.0",
     author="Mason Hall",
     author_email="masonhall@gmail.com",
     description="A command-line tool for generating histograms from timestamped logs",
