@@ -20,6 +20,9 @@ def process_line(line: str) -> Optional[datetime]:
 
 
 def generate_histogram(hist: Dict[datetime, int]) -> None:
+    if not hist:
+        print("No valid ISO formatted timestamps were found.")
+        return
     maximum = 1
     for value in hist.values():
         if value > maximum:
