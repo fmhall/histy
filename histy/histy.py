@@ -46,7 +46,14 @@ def histy(args: Dict) -> Dict[datetime, int]:
     bucket_time_s = args['bucket_time_s']
     lines = fileinput.input(files=args['files'] if len(args['files']) > 0 else ('-',))
     hist = dict()
-    bucket_start = process_line(next(lines))
+    bucket_start = None
+    while next(lines):
+        bucket_start = process_line(next(lines))
+        if bucket_start:
+            break
+    if not bucket_start:
+        print("No valid ISO formatted timestamps were found.")
+        return
     bucket_end = bucket_start + timedelta(seconds=bucket_time_s)
     for line in lines:
         time_stamp = process_line(line)
