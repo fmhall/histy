@@ -21,7 +21,7 @@ setuptools.setup(
     python_requires='>=3.6',
     entry_points={
             'console_scripts': [
-                'histy = histy.hist:main'
+                'histy = histy.histy:main'
             ]
         }
 )
