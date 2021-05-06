@@ -4,3 +4,4 @@ env/
 g.log
 .idea
 histy.egg-info/
+histy/__pycache__/
